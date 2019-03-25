@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="HarmonizerAudioUnitViewController" customModule="WatHarmonyKit" customModuleProvider="target">
+            <connections>
+                <outlet property="baseLabel" destination="5wf-BS-PXT" id="ooa-hX-bjs"/>
+                <outlet property="degreePopUpButton" destination="bJ6-tN-YNi" id="iOn-hm-fbF"/>
+                <outlet property="harmonyLabel" destination="WeA-Ua-tBf" id="at6-9v-PhX"/>
+                <outlet property="mixSlider" destination="Df6-Ey-HC2" id="Twr-oY-cIl"/>
+                <outlet property="rootPopUpButton" destination="Hzy-0c-rdp" id="hUa-sW-LRF"/>
+                <outlet property="scaleSegmentedControl" destination="Uek-3W-bm2" id="mVO-TM-V0i"/>
+                <outlet property="view" destination="c22-O7-iKe" id="hzH-WR-f05"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="266" height="135"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="WtZ-Pc-qhD">
+                    <rect key="frame" x="0.0" y="0.0" width="266" height="135"/>
+                    <view key="contentView" id="436-Jb-TbL">
+                        <rect key="frame" x="0.0" y="0.0" width="266" height="135"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WeA-Ua-tBf">
+                                <rect key="frame" x="204" y="96" width="44" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="7pt-S0-HNZ"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="WNJ-BQ-e6C">
+                                    <font key="font" size="14" name="Monaco"/>
+                                    <color key="textColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5wf-BS-PXT">
+                                <rect key="frame" x="135" y="96" width="44" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="G2N-WH-fhL"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="FEL-2s-Cmp">
+                                    <font key="font" size="14" name="Monaco"/>
+                                    <color key="textColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Olm-nB-WXv">
+                                <rect key="frame" x="179" y="96" width="25" height="19"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="=&gt;" id="4rq-O9-HDW">
+                                    <font key="font" size="14" name="Monaco"/>
+                                    <color key="textColor" red="0.87451815605163574" green="0.87842434644699097" blue="0.87450236082077026" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="5wf-BS-PXT" firstAttribute="top" secondItem="436-Jb-TbL" secondAttribute="top" constant="20" id="Gcn-Lk-Noc"/>
+                            <constraint firstItem="WeA-Ua-tBf" firstAttribute="centerY" secondItem="5wf-BS-PXT" secondAttribute="centerY" id="T5w-Jd-Kma"/>
+                            <constraint firstItem="WeA-Ua-tBf" firstAttribute="leading" secondItem="Olm-nB-WXv" secondAttribute="trailing" constant="4" id="UA0-mD-WGK"/>
+                            <constraint firstItem="Olm-nB-WXv" firstAttribute="leading" secondItem="5wf-BS-PXT" secondAttribute="trailing" constant="4" id="pnA-Wk-ew6"/>
+                            <constraint firstItem="WeA-Ua-tBf" firstAttribute="top" secondItem="436-Jb-TbL" secondAttribute="top" constant="20" id="xh8-a5-xfn"/>
+                            <constraint firstItem="Olm-nB-WXv" firstAttribute="centerY" secondItem="5wf-BS-PXT" secondAttribute="centerY" id="yKE-My-avU"/>
+                        </constraints>
+                    </view>
+                    <color key="borderColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="fillColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </box>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vuh-1d-ScV">
+                    <rect key="frame" x="18" y="96" width="106" height="19"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="WatHarmony" id="89P-9B-BR2">
+                        <font key="font" metaFont="systemBold" size="16"/>
+                        <color key="textColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hzy-0c-rdp">
+                    <rect key="frame" x="18" y="52" width="60" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="55" id="ZNX-yo-vhe"/>
+                    </constraints>
+                    <popUpButtonCell key="cell" type="push" title="C" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="YiH-hE-ofz" id="qwR-nb-2HY">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" id="Ujd-xO-Bfz">
+                            <items>
+                                <menuItem title="C" state="on" id="YiH-hE-ofz"/>
+                                <menuItem title="C#" id="gpQ-T4-CBe"/>
+                                <menuItem title="D" id="FpG-pF-GCM"/>
+                                <menuItem title="D#" id="ZqB-90-7mX"/>
+                                <menuItem title="E" id="13V-Tm-dEo"/>
+                                <menuItem title="F" id="9es-TZ-4cW"/>
+                                <menuItem title="F#" id="CiY-jd-fie"/>
+                                <menuItem title="G" id="LBd-jE-Y0E"/>
+                                <menuItem title="G#" id="klj-fj-EzQ"/>
+                                <menuItem title="A" id="TGD-Ph-WsP"/>
+                                <menuItem title="A#" id="asn-f9-Bb5"/>
+                                <menuItem title="B" id="H2L-N7-ge3"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <action selector="didSetRootWithSender:" target="-2" id="VE3-yD-Xjo"/>
+                    </connections>
+                </popUpButton>
+                <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uek-3W-bm2">
+                    <rect key="frame" x="81" y="53" width="104" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="wfl-ND-Sxx"/>
+                    </constraints>
+                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="oeF-l7-B6V">
+                        <font key="font" metaFont="system"/>
+                        <segments>
+                            <segment label="Major" width="48" selected="YES"/>
+                            <segment label="Minor" width="48" tag="1"/>
+                        </segments>
+                    </segmentedCell>
+                    <connections>
+                        <action selector="didSetScaleWithSender:" target="-2" id="pdj-p6-VVK"/>
+                    </connections>
+                </segmentedControl>
+                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bJ6-tN-YNi">
+                    <rect key="frame" x="189" y="52" width="60" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="55" id="Sd1-cv-a5s"/>
+                    </constraints>
+                    <popUpButtonCell key="cell" type="push" title="+0" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="jvo-0P-Nq6" id="ZBZ-Lr-AP3">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" id="VMD-m9-MQS">
+                            <items>
+                                <menuItem title="+7" id="dps-vd-Ci3"/>
+                                <menuItem title="+6" id="luw-8S-h0P"/>
+                                <menuItem title="+5" id="N0W-HN-3BV"/>
+                                <menuItem title="+4" id="ny0-o6-qI6"/>
+                                <menuItem title="+3" id="fon-4P-sRl"/>
+                                <menuItem title="+2" id="ZW6-bd-OPT"/>
+                                <menuItem title="+1" id="bEz-yQ-H03"/>
+                                <menuItem title="+0" state="on" id="jvo-0P-Nq6"/>
+                                <menuItem title="-1" id="8NJ-Yn-XdA"/>
+                                <menuItem title="-2" id="Btk-a5-I0J"/>
+                                <menuItem title="-3" id="r7U-GE-y9V"/>
+                                <menuItem title="-4" id="pgQ-Or-DVN"/>
+                                <menuItem title="-5" id="bge-1I-l8u"/>
+                                <menuItem title="-6" id="b7A-n9-vnT"/>
+                                <menuItem title="-7" id="7Ez-pZ-GmN">
+                                    <attributedString key="attributedTitle"/>
+                                </menuItem>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <action selector="didSetDegreeWithSender:" target="-2" id="mCn-91-Hxj"/>
+                    </connections>
+                </popUpButton>
+                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Df6-Ey-HC2">
+                    <rect key="frame" x="18" y="18" width="230" height="19"/>
+                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="below" sliderType="linear" id="wVr-5D-Pyn"/>
+                    <connections>
+                        <action selector="didSetMixWithSender:" target="-2" id="Dik-B8-a4u"/>
+                    </connections>
+                </slider>
+            </subviews>
+            <constraints>
+                <constraint firstItem="bJ6-tN-YNi" firstAttribute="top" secondItem="vuh-1d-ScV" secondAttribute="bottom" constant="20" id="2Xe-nm-g6D"/>
+                <constraint firstItem="WeA-Ua-tBf" firstAttribute="trailing" secondItem="bJ6-tN-YNi" secondAttribute="trailing" id="4mE-Qk-BKZ"/>
+                <constraint firstAttribute="bottom" secondItem="Df6-Ey-HC2" secondAttribute="bottom" constant="20" id="5JM-oM-0Rj"/>
+                <constraint firstAttribute="trailing" secondItem="WtZ-Pc-qhD" secondAttribute="trailing" id="6Is-zG-589"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bJ6-tN-YNi" secondAttribute="trailing" constant="20" id="6Ko-Vv-QPj"/>
+                <constraint firstItem="bJ6-tN-YNi" firstAttribute="leading" secondItem="Uek-3W-bm2" secondAttribute="trailing" constant="8" id="DTo-rp-8pv"/>
+                <constraint firstItem="WtZ-Pc-qhD" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="Eox-qN-hB5"/>
+                <constraint firstItem="bJ6-tN-YNi" firstAttribute="trailing" secondItem="Df6-Ey-HC2" secondAttribute="trailing" id="F1l-T3-mfP"/>
+                <constraint firstItem="vuh-1d-ScV" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="He7-ET-RTm"/>
+                <constraint firstItem="Uek-3W-bm2" firstAttribute="leading" secondItem="Hzy-0c-rdp" secondAttribute="trailing" constant="8" id="Twr-l4-ufC"/>
+                <constraint firstItem="WtZ-Pc-qhD" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="af4-9o-Bdm"/>
+                <constraint firstItem="Df6-Ey-HC2" firstAttribute="top" secondItem="Hzy-0c-rdp" secondAttribute="bottom" constant="20" id="dCD-ZE-zuZ"/>
+                <constraint firstAttribute="bottom" secondItem="WtZ-Pc-qhD" secondAttribute="bottom" id="dtR-QI-ZQO"/>
+                <constraint firstItem="Hzy-0c-rdp" firstAttribute="top" secondItem="vuh-1d-ScV" secondAttribute="bottom" constant="20" id="gs8-9O-PT7"/>
+                <constraint firstItem="Hzy-0c-rdp" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="iAH-tg-52Q"/>
+                <constraint firstItem="vuh-1d-ScV" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="s8d-Mb-gGd"/>
+                <constraint firstItem="Uek-3W-bm2" firstAttribute="top" secondItem="vuh-1d-ScV" secondAttribute="bottom" constant="20" id="vqB-Rs-eLk"/>
+                <constraint firstItem="Df6-Ey-HC2" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="yfj-l9-eRh"/>
+            </constraints>
+            <point key="canvasLocation" x="79" y="89.5"/>
+        </customView>
+    </objects>
+</document>

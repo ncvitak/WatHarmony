@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Application-->
+        <scene sceneID="JPo-4y-FX3">
+            <objects>
+                <application id="hnw-xV-0zn" sceneMemberID="viewController">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
+                        <items>
+                            <menuItem title="WatHarmony" id="1Xt-HY-uBw">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="WatHarmony" systemMenu="apple" id="uQy-DD-JDr">
+                                    <items>
+                                        <menuItem title="About WatHarmony" id="5kV-Vb-QxS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
+                                        <menuItem title="Services" id="NMo-om-nkz">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
+                                        <menuItem title="Hide WatHarmony" keyEquivalent="h" id="Olw-nP-bQN">
+                                            <connections>
+                                                <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="hideOtherApplications:" target="Ady-hI-5gd" id="VT4-aY-XCT"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show All" id="Kd2-mp-pUS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="unhideAllApplications:" target="Ady-hI-5gd" id="Dhg-Le-xox"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
+                                        <menuItem title="Quit WatHarmony" keyEquivalent="q" id="4sb-4s-VLi">
+                                            <connections>
+                                                <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="File" id="dMs-cI-mzQ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="File" id="bib-Uj-vzu">
+                                    <items>
+                                        <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
+                                            <connections>
+                                                <action selector="performClose:" target="Ady-hI-5gd" id="HmO-Ls-i7Q"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Window" id="aUF-d1-5bR">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
+                                    <items>
+                                        <menuItem title="Minimize" keyEquivalent="m" id="OY7-WF-poV">
+                                            <connections>
+                                                <action selector="performMiniaturize:" target="Ady-hI-5gd" id="VwT-WD-YPe"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
+                                        <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="arrangeInFront:" target="Ady-hI-5gd" id="DRN-fu-gQh"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
+                    </connections>
+                </application>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="WatHarmony" customModuleProvider="target"/>
+                <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+                <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="0.0"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="R2V-B0-nI4">
+            <objects>
+                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                    <window key="window" title="WatHarmony" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
+                    </connections>
+                </windowController>
+                <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="250"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hIz-AP-VOD">
+            <objects>
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="WatHarmony" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="385" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box boxType="custom" borderType="none" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="gzu-rV-VGe">
+                                <rect key="frame" x="0.0" y="0.0" width="385" height="270"/>
+                                <view key="contentView" id="Tea-ZD-dYM">
+                                    <rect key="frame" x="0.0" y="0.0" width="385" height="270"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="fillColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                            </box>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="ESD-Do-roH">
+                                <rect key="frame" x="0.0" y="230" width="385" height="40"/>
+                                <subviews>
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oep-Lf-RJo">
+                                        <rect key="frame" x="18" y="7" width="125" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="hVc-Pc-3pc"/>
+                                        </constraints>
+                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="gYW-9v-ne3">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="menu"/>
+                                            <menu key="menu" id="OeV-EI-CCH"/>
+                                        </popUpButtonCell>
+                                    </popUpButton>
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v3u-Y6-bDb">
+                                        <rect key="frame" x="148" y="7" width="125" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="Khz-Ds-pjo"/>
+                                        </constraints>
+                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="tEM-PD-3Tk">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="menu"/>
+                                            <menu key="menu" id="VYO-J1-yB0"/>
+                                        </popUpButtonCell>
+                                    </popUpButton>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hiy-EE-axb">
+                                        <rect key="frame" x="284" y="3" width="87" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="75" id="2wc-9x-Coz"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="Start IO" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cJt-Rj-cOr">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="ioButtonActionWithButton:" target="XfG-lQ-9wD" id="oJK-V3-EqP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="hiy-EE-axb" firstAttribute="centerY" secondItem="ESD-Do-roH" secondAttribute="centerY" id="1Eq-H9-N1s"/>
+                                    <constraint firstItem="oep-Lf-RJo" firstAttribute="leading" secondItem="ESD-Do-roH" secondAttribute="leading" constant="20" id="CGv-GI-7iR"/>
+                                    <constraint firstAttribute="bottom" secondItem="oep-Lf-RJo" secondAttribute="bottom" constant="10" id="PxQ-57-ObV"/>
+                                    <constraint firstAttribute="trailing" secondItem="hiy-EE-axb" secondAttribute="trailing" constant="20" id="Qhr-yj-eaT"/>
+                                    <constraint firstItem="hiy-EE-axb" firstAttribute="leading" secondItem="v3u-Y6-bDb" secondAttribute="trailing" constant="20" id="QwL-VO-UjV"/>
+                                    <constraint firstItem="v3u-Y6-bDb" firstAttribute="centerY" secondItem="ESD-Do-roH" secondAttribute="centerY" id="UCy-yD-v2M"/>
+                                    <constraint firstItem="v3u-Y6-bDb" firstAttribute="leading" secondItem="oep-Lf-RJo" secondAttribute="trailing" constant="10" id="lNX-g6-kvb"/>
+                                    <constraint firstItem="oep-Lf-RJo" firstAttribute="centerY" secondItem="ESD-Do-roH" secondAttribute="centerY" id="pGz-1a-qSh"/>
+                                    <constraint firstAttribute="height" constant="40" id="ueo-UZ-Rzh"/>
+                                </constraints>
+                            </customView>
+                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="ocC-9t-g6z">
+                                <rect key="frame" x="0.0" y="0.0" width="385" height="230"/>
+                                <connections>
+                                    <segue destination="Mhd-em-e2D" kind="embed" id="HxY-lf-a15"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="ESD-Do-roH" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="5k0-tP-md3"/>
+                            <constraint firstItem="gzu-rV-VGe" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="FqP-ZY-hL0"/>
+                            <constraint firstItem="ocC-9t-g6z" firstAttribute="top" secondItem="ESD-Do-roH" secondAttribute="bottom" id="M3Z-zq-2vi"/>
+                            <constraint firstAttribute="trailing" secondItem="ocC-9t-g6z" secondAttribute="trailing" id="OpZ-PO-xVz"/>
+                            <constraint firstAttribute="bottom" secondItem="ocC-9t-g6z" secondAttribute="bottom" id="SUI-oO-1F8"/>
+                            <constraint firstAttribute="trailing" secondItem="gzu-rV-VGe" secondAttribute="trailing" id="b3Y-M5-7gL"/>
+                            <constraint firstItem="ocC-9t-g6z" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="bkk-Sq-Cap"/>
+                            <constraint firstAttribute="bottom" secondItem="gzu-rV-VGe" secondAttribute="bottom" id="dx5-ia-P9U"/>
+                            <constraint firstItem="gzu-rV-VGe" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="jgZ-Ho-uKM"/>
+                            <constraint firstAttribute="trailing" secondItem="ESD-Do-roH" secondAttribute="trailing" id="vVE-DB-oHN"/>
+                            <constraint firstItem="ESD-Do-roH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="vkw-Nq-lzy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="inputButton" destination="oep-Lf-RJo" id="YpR-y8-4Np"/>
+                        <outlet property="ioButton" destination="hiy-EE-axb" id="xoW-K1-hI5"/>
+                        <outlet property="outputButton" destination="v3u-Y6-bDb" id="Zbr-7r-cjD"/>
+                    </connections>
+                </viewController>
+                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75.5" y="655"/>
+        </scene>
+        <!--Harmonizer Audio Unit View Controller-->
+        <scene sceneID="6hQ-po-Rrl">
+            <objects>
+                <viewController id="Mhd-em-e2D" customClass="HarmonizerAudioUnitViewController" customModule="WatHarmonyKit" sceneMemberID="viewController">
+                    <view key="view" id="Cx0-CD-SJ3">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="sJY-4o-OFq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="692" y="655"/>
+        </scene>
+    </scenes>
+</document>
