@@ -19,45 +19,45 @@ public struct Pitch {
 // MARK: - Arithmetic
 
 public extension Pitch {
-	public static func +(lhs: Pitch, rhs: Int) -> Pitch {
+	static func +(lhs: Pitch, rhs: Int) -> Pitch {
 		return Pitch(value: lhs.value + rhs)
 	}
 	
-	public static func +=(lhs: inout Pitch, rhs: Int) {
+	static func +=(lhs: inout Pitch, rhs: Int) {
 		lhs.value += rhs
 	}
 	
-	public static func -(lhs: Pitch, rhs: Int) -> Pitch {
+	static func -(lhs: Pitch, rhs: Int) -> Pitch {
 		return Pitch(value: lhs.value - rhs)
 	}
 	
-	public static func -=(lhs: inout Pitch, rhs: Int) {
+	static func -=(lhs: inout Pitch, rhs: Int) {
 		lhs.value -= rhs
 	}
 	
-	public static func -(lhs: Pitch, rhs: Pitch) -> Int {
+	static func -(lhs: Pitch, rhs: Pitch) -> Int {
 		return lhs.value - rhs.value
 	}
 	
-	public static func /(lhs: Pitch, rhs: Pitch) -> Float {
+	static func /(lhs: Pitch, rhs: Pitch) -> Float {
 		return pow(2, Float(lhs - rhs) / 12)
 	}
 }
 
 public extension Pitch {
-	public static func +(lhs: Pitch, rhs: Interval) -> Pitch {
+	static func +(lhs: Pitch, rhs: Interval) -> Pitch {
 		return lhs + rhs.rawValue
 	}
 	
-	public static func +=(lhs: inout Pitch, rhs: Interval) {
+	static func +=(lhs: inout Pitch, rhs: Interval) {
 		lhs += rhs.rawValue
 	}
 	
-	public static func -(lhs: Pitch, rhs: Interval) -> Pitch {
+	static func -(lhs: Pitch, rhs: Interval) -> Pitch {
 		return lhs - rhs.rawValue
 	}
 	
-	public static func -=(lhs: inout Pitch, rhs: Interval) {
+	static func -=(lhs: inout Pitch, rhs: Interval) {
 		lhs -= rhs.rawValue
 	}
 }
@@ -65,7 +65,7 @@ public extension Pitch {
 // MARK: - Class & Octave
 
 public extension Pitch {
-	public enum Class: Int {
+	enum Class: Int {
 		case C
 		case Db
 		case D
@@ -82,15 +82,15 @@ public extension Pitch {
 		static let count = 12
 	}
 	
-	public init(class: Class, octave: Int) {
+	init(class: Class, octave: Int) {
 		self.value = 12 * octave + `class`.rawValue
 	}
 	
-	public var `class`: Class {
+	var `class`: Class {
 		return Class(rawValue: value.mod(12))!
 	}
 	
-	public var octave: Int {
+	var octave: Int {
 		return value / 12
 	}
 }
@@ -98,7 +98,7 @@ public extension Pitch {
 // MARK: - Frequency
 
 public extension Pitch {
-	public init?(frequency: Float) {
+	init?(frequency: Float) {
 		guard frequency > 0 else {
 			return nil
 		}
@@ -106,7 +106,7 @@ public extension Pitch {
 		self.value = Int(round(12 * log2(frequency / 27.5) + 9))
 	}
 	
-	public var frequency: Float {
+	var frequency: Float {
 		return 27.5 * pow(2, Float(value - 9) / 12)
 	}
 }
