@@ -50,7 +50,6 @@ public class Chunker {
 			head += n
 			if head == self.length {
 				block(wbuffer)
-				sleep(0)
 				swap(&rbuffer, &wbuffer)
 				head = 0
 			}

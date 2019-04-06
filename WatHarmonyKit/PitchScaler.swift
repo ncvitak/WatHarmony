@@ -50,8 +50,6 @@ public class PitchScaler {
 	private let window: UnsafePointer<Float>
 	private let normalizeWindow: UnsafePointer<Float>
 	
-	private let vTwoPiF: UnsafePointer<Float>
-	
 	init(log2Length: Int, sampleRate: Float, overlap: Int = 4) {
 		assert(log2Length >= 0)
 		assert((1 << log2Length) % overlap == 0)
@@ -114,15 +112,6 @@ public class PitchScaler {
 			self.window = UnsafePointer(window)
 			self.normalizeWindow = UnsafePointer(normalizeWindow)
 		}
-		
-		do {
-			let vTwoPiF = UnsafeMutablePointer<Float>.allocate(capacity: length)
-			var twoPi = 2 * Float.pi
-			
-			vDSP_vfill(&twoPi, vTwoPiF, 1, vDSP_Length(length))
-			
-			self.vTwoPiF = UnsafePointer(vTwoPiF)
-		}
 	}
 	
 	deinit {
@@ -146,27 +135,20 @@ public class PitchScaler {
 		
 		window.deallocate()
 		normalizeWindow.deallocate()
-		
-		vTwoPiF.deallocate()
 	}
 	
-	private func unwrap(phase: UnsafeMutablePointer<Float>) {
-		var piF = Float.pi
-		vDSP_vsadd(phase, 1, &piF, phase, 1, vDSP_Length(length))
-		
+	private func unwrap(phase: UnsafeMutablePointer<Float>, complex: inout DSPSplitComplex) {
 		var lengthI = Int32(length)
-		vvfmodf(phase, phase, vTwoPiF, &lengthI)
-		vDSP_vadd(phase, 1, vTwoPiF, 1, phase, 1, vDSP_Length(length))
-		vvfmodf(phase, phase, vTwoPiF, &lengthI)
 		
-		piF = -piF
-		vDSP_vsadd(phase, 1, &piF, phase, 1, vDSP_Length(length))
+		vvcosf(complex.realp, phase, &lengthI)
+		vvsinf(complex.imagp, phase, &lengthI)
+		
+		vDSP_zvphas(&complex, 1, phase, 1, vDSP_Length(length))
 	}
 	
 	private func process(chunk: UnsafeMutablePointer<Float>) {
 		let epsilon = sqrtf(.ulpOfOne)
 		var zeroF = Float(0)
-		var lengthI = Int32(length)
 		var lengthF = Float(length)
 		var synthesisEndF = Float(synthesisHop - 1)
 		
@@ -235,7 +217,7 @@ public class PitchScaler {
 			vDSP_vsub(tbuffer, 1, phase, 1, tbuffer, 1, vDSP_Length(length))
 			
 			// unwrap phase increment
-			unwrap(phase: tbuffer)
+			unwrap(phase: tbuffer, complex: &complex)
 			
 			// compute instantaneous
 			vDSP_vsdiv(tbuffer, 1, &analysisHopF, tbuffer, 1, vDSP_Length(length))
@@ -244,11 +226,9 @@ public class PitchScaler {
 
 			// accumulate
 			vDSP_vadd(lastSynthesisPhase, 1, tbuffer, 1, lastSynthesisPhase, 1, vDSP_Length(length))
-			unwrap(phase: lastSynthesisPhase)
 			
 			// recontruct from phase and magnitude
-			vvcosf(complex.realp, lastSynthesisPhase, &lengthI)
-			vvsinf(complex.imagp, lastSynthesisPhase, &lengthI)
+			unwrap(phase: lastSynthesisPhase, complex: &complex)
 			vDSP_zrvmul(&complex, 1, magnitude, 1, &complex, 1, vDSP_Length(length))
 		}
 		

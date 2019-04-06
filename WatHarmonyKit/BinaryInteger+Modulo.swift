@@ -1,5 +1,5 @@
 //
-//  BinaryInteger+mod.swift
+//  BinaryInteger+Modulo.swift
 //  WatHarmonyKit
 //
 //  Created by Nicholas Cvitak on 2019-03-09.
