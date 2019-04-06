@@ -22,7 +22,7 @@ public struct Console {
 		return LogLevel(rawValue: UserDefaults.standard.integer(forKey: "Console.level")) ?? .default
 	}()
 	
-	public static func log(file: String = #file, line: Int = #line, function: String = #function, _ level: LogLevel, _ format: String, _ args: CVarArg...) {
+	public static func log(file: String = #file, line: Int = #line, function: String = #function, _ level: LogLevel, _ format: @autoclosure () -> String, _ args: CVarArg...) {
 		guard level.rawValue <= Console.level.rawValue else {
 			return
 		}
@@ -33,7 +33,7 @@ public struct Console {
 			index = file.startIndex
 		}
 		
-		let formatted = String(format: "[\(level)] \(file[index..<file.endIndex]):\(line):\(function): \(format)", arguments: args)
+		let formatted = String(format: "[\(level)] \(file[index..<file.endIndex]):\(line):\(function): \(format())", arguments: args)
 		if #available(macOSApplicationExtension 10.14, *) {
 			os_log(level.osLogType, "%{public}s", formatted)
 		} else {
