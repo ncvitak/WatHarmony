@@ -33,7 +33,7 @@ public class HarmonizerAudioUnit: AUAudioUnit {
 	private let _parameterTree: AUParameterTree
 	
 	private var _pitchTransposer: PitchTransposer?
-	private var _pitchScaler: PitchScaler?
+	private var _pitchScalers: [PitchScaler] = []
 	
 	private var _root: Pitch.Class = .C {
 		didSet {
@@ -53,7 +53,9 @@ public class HarmonizerAudioUnit: AUAudioUnit {
 	private var _mix: Float = 0.5 {
 		didSet {
 			_mix = max(0, min(_mix, 1))
-			_pitchScaler?.mix = _mix
+			for pitchScaler in _pitchScalers {
+				pitchScaler.mix = _mix
+			}
 		}
 	}
 	
@@ -96,9 +98,6 @@ public class HarmonizerAudioUnit: AUAudioUnit {
 		_inputBus = try AUAudioUnitBus(format: format)
 		_outputBus = try AUAudioUnitBus(format: format)
 		
-		_inputBus.maximumChannelCount = 1
-		_outputBus.maximumChannelCount = 1
-		
 		try super.init(componentDescription: componentDescription, options: options)
 		
 		_inputBusses = AUAudioUnitBusArray(audioUnit: self, busType: .input, busses: [_inputBus])
@@ -128,24 +127,24 @@ public class HarmonizerAudioUnit: AUAudioUnit {
 	}
 	
 	public override var latency: TimeInterval {
-		guard let pitchScaler = _pitchScaler else {
+		guard let pitchScaler = _pitchScalers.first else {
 			return 0
 		}
 		return Double(pitchScaler.length + (pitchScaler.length / pitchScaler.overlap)) / _inputBus.format.sampleRate
-	}
-	
-	public override var channelCapabilities: [NSNumber]? {
-		return [1, 1]
 	}
 	
 	public override func allocateRenderResources() throws {
 		Console.log(.default, "")
 		try super.allocateRenderResources()
 		
-		guard _inputBus.format.channelCount == 1 else {
+		guard _inputBus.format == _outputBus.format else {
+			Console.log(.error, "input format does not equal output format! (input: \(_inputBus.format), output: \(_outputBus.format))")
+			self.setRenderResourcesAllocated(false)
 			throw NSError(domain: NSOSStatusErrorDomain, code: Int(kAudioUnitErr_FormatNotSupported))
 		}
-		guard _outputBus.format.channelCount == 1 else {
+		guard _inputBus.format.isStandard else {
+			Console.log(.error, "only standard (deinterleaved native-endian float) format supported! (format: \(_inputBus.format))")
+			self.setRenderResourcesAllocated(false)
 			throw NSError(domain: NSOSStatusErrorDomain, code: Int(kAudioUnitErr_FormatNotSupported))
 		}
 		
@@ -154,20 +153,24 @@ public class HarmonizerAudioUnit: AUAudioUnit {
 		let log2Length = Int(ceil(log2(samplesRequired)))
 		
 		let pitchTransposer = PitchTransposer(key: Key(root: _root, scale: _scale), degree: _degree, log2Length: log2Length, sampleRate: sampleRate)
-		let pitchScaler = PitchScaler(log2Length: log2Length, sampleRate: sampleRate, overlap: 8)
-		
-		pitchScaler.delegate = pitchTransposer
-		pitchScaler.mix = _mix
+		let pitchScalers = (0..<_inputBus.format.channelCount).map { _ -> PitchScaler in
+			let pitchScaler = PitchScaler(log2Length: log2Length, sampleRate: sampleRate, overlap: 8)
+			
+			pitchScaler.delegate = pitchTransposer
+			pitchScaler.mix = _mix
+			
+			return pitchScaler
+		}
 		
 		_pitchTransposer = pitchTransposer
-		_pitchScaler = pitchScaler
+		_pitchScalers = pitchScalers
 	}
 	
 	public override func deallocateRenderResources() {
 		Console.log(.default, "")
 		super.deallocateRenderResources()
 		
-		_pitchScaler = nil
+		_pitchScalers = []
 		_pitchTransposer = nil
 	}
 	
@@ -211,8 +214,10 @@ public class HarmonizerAudioUnit: AUAudioUnit {
 		}
 		
 		let output = UnsafeMutableAudioBufferListPointer(outputData)
-		let buffer = output.first!.mData!.assumingMemoryBound(to: Float.self)
-		_pitchScaler!.process(buffer: buffer, length: Int(frameCount))
+		for i in 0..<output.count {
+			let buffer = output[i].mData!.assumingMemoryBound(to: Float.self)
+			_pitchScalers[i].process(buffer: buffer, length: Int(frameCount))
+		}
 		
 		_lastRenderTime = CFAbsoluteTimeGetCurrent()
 		return err
