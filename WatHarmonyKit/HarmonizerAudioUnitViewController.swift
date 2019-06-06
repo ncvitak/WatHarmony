@@ -54,18 +54,31 @@ public class HarmonizerAudioUnitViewController: AUViewController {
 		return timer
 	}()
 	
-	public override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
-		super.init(nibName: nibNameOrNil ?? "HarmonizerAudioUnitViewController", bundle: nibBundleOrNil ?? Bundle(for: HarmonizerAudioUnitViewController.self))
-	}
-	
-	public required init?(coder: NSCoder) {
-		super.init(nibName: "HarmonizerAudioUnitViewController", bundle: Bundle(for: HarmonizerAudioUnitViewController.self))
-	}
-	
 	deinit {
 		if isTimerResumed {
 			timer.cancel()
 		}
+	}
+	
+	public override func loadView() {
+		var topLevelObjects: NSArray?
+		
+		guard let nib = NSNib(nibNamed: "HarmonizerAudioUnitViewController", bundle: Bundle(for: HarmonizerAudioUnitViewController.self)) else {
+			Console.log(.fault, "failed to load nib")
+			abort()
+		}
+		
+		guard nib.instantiate(withOwner: self, topLevelObjects: &topLevelObjects) else {
+			Console.log(.fault, "failed to instantiate nib")
+			abort()
+		}
+		
+		guard let view = topLevelObjects?.first(where: { $0 is NSView }) as? NSView else {
+			Console.log(.fault, "could not locate top level NSView")
+			abort()
+		}
+		
+		self.view = view
 	}
 	
 	public override func viewDidLoad() {
